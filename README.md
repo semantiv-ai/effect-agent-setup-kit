@@ -44,6 +44,22 @@ or fetch this repository automatically.
 
 There are two supported ways to use it:
 
+- **Generate without `git clone`.** If the setup kit is public but not cloned,
+  an agent can read the skill from GitHub, download the repository archive to a
+  temporary directory, and run the setup script from that archive:
+
+  ```sh
+  curl -fsSL https://raw.githubusercontent.com/semantiv-ai/effect-agent-setup-kit/main/skills/effect-agent-setup/SKILL.md
+  tmp="$(mktemp -d)"
+  curl -fsSL https://github.com/semantiv-ai/effect-agent-setup-kit/archive/refs/heads/main.tar.gz \
+    | tar -xz -C "$tmp" --strip-components=1
+  node "$tmp/scripts/setup.mjs" /path/to/new-project --effect-version current
+  ```
+
+  This is not a git clone, but it still makes the setup kit files available
+  locally long enough to copy templates, install dependencies, clone
+  `.repos/effect-smol`, and run verification.
+
 - **Generate a new project from this setup-kit checkout.** Ask an agent that has
   filesystem access to this repository to use the skill and run:
 
@@ -60,10 +76,10 @@ There are two supported ways to use it:
   the agent to inspect `.repos/effect-smol`, update local patterns/docs, and run
   `pnpm run setup:test` plus `pnpm run check`.
 
-If a user only references the skill text without making this setup-kit checkout
-available, the agent can follow the workflow conceptually, but it cannot copy
-the templates or run `scripts/setup.mjs`. In that case the user must first clone
-or otherwise provide this repository to the agent.
+If a user only references the skill text without making the setup-kit files
+available by checkout, archive download, or another file-transfer mechanism, the
+agent can follow the workflow conceptually, but it cannot copy the templates or
+run `scripts/setup.mjs`.
 
 ## Generated Project
 

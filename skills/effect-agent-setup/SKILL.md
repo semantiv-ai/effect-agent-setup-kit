@@ -4,12 +4,13 @@ Use this skill when generating a new Effect project from the setup kit or when
 updating an Effect project generated from it after changing the Effect version.
 
 This skill is not a standalone installer. It is agent guidance. To scaffold a
-project, the agent must have filesystem access to the setup-kit checkout that
-contains `scripts/setup.mjs` and `templates/default`.
+project, the agent must make the setup-kit files available locally, either from
+a checkout or from the public GitHub archive. The local files must include
+`scripts/setup.mjs` and `templates/default`.
 
 ## Generate A New Project
 
-When the user asks to create a new project from this setup kit:
+When the user asks to create a new project from a local setup-kit checkout:
 
 1. Locate the setup-kit checkout.
 2. Run the setup script from that checkout:
@@ -40,8 +41,26 @@ pnpm run check
 ```
 
 If the setup-kit checkout is not available, tell the user that the skill alone
-cannot scaffold files. The user must clone or provide the setup-kit repository,
+cannot scaffold files unless the public repository archive can be downloaded.
+The user must allow an archive download, clone/provide the setup-kit repository,
 or explicitly ask for a manual recreation.
+
+## Generate Without Git Clone
+
+When the user asks to use the skill without cloning the setup-kit repository,
+download the public GitHub archive into a temporary directory and run the setup
+script from there:
+
+```sh
+tmp="$(mktemp -d)"
+curl -fsSL https://github.com/semantiv-ai/effect-agent-setup-kit/archive/refs/heads/main.tar.gz \
+  | tar -xz -C "$tmp" --strip-components=1
+node "$tmp/scripts/setup.mjs" /path/to/new-project --effect-version current
+```
+
+This is not a git clone. It is a temporary archive extraction that gives the
+agent access to the setup script, templates, copied reference docs, and
+standalone verifier.
 
 ## Maintain A Generated Project
 

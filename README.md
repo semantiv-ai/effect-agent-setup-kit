@@ -102,9 +102,10 @@ or archive download, then run `scripts/setup.mjs`.
   and [YouTube channel](https://www.youtube.com/@lucas-barake).
 - Michael Arnaldi's
   [Vibe Engineering Effect Apps](https://www.youtube.com/watch?v=Wmp2Tku2PrI)
-  and X handle [`@MichaelArnaldi`](https://x.com/MichaelArnaldi).
+  and [`@MichaelArnaldi` on X](https://x.com/MichaelArnaldi).
 - Maxwell Brown's
-  [The One Weird Git Trick That Makes Coding Agents More Effect-ive](https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/).
+  [The One Weird Git Trick That Makes Coding Agents More Effect-ive](https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/)
+  and [`@imax153` on X](https://x.com/imax153).
 
 This kit applies the local-source principle by cloning `effect-smol` into
 `.repos/effect-smol` as read-only reference source. It uses a setup-time clone,

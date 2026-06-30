@@ -41,10 +41,11 @@ This generated setup includes or applies ideas from:
   reference material under `docs/reference/effect-ai-chat-example/`.
 - Michael Arnaldi's AI Engineer workshop
   [Vibe Engineering Effect Apps](https://www.youtube.com/watch?v=Wmp2Tku2PrI)
-  and X handle [`@MichaelArnaldi`](https://x.com/MichaelArnaldi), which informed
+  and [`@MichaelArnaldi` on X](https://x.com/MichaelArnaldi), which informed
   the "clone the repo, extract patterns from source" workflow.
 - Maxwell Brown's Effect article
   [The One Weird Git Trick That Makes Coding Agents More Effect-ive](https://effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive/),
+  and [`@imax153` on X](https://x.com/imax153),
   which argues for putting dependency source where agents can inspect it and
   documenting that boundary in agent instructions.
 

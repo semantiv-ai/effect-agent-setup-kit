@@ -23,6 +23,18 @@ curl -fsSL https://github.com/semantiv-ai/effect-agent-setup-kit/archive/refs/he
 node "$tmp/scripts/setup.mjs" ~/Documents/my-effect-project --effect-version current
 ```
 
+Agent skill option:
+
+If your agent can use a skill from a repository path or URL, point it at:
+
+```text
+https://github.com/semantiv-ai/effect-agent-setup-kit/blob/main/skills/effect-agent-setup/SKILL.md
+```
+
+Then ask it to create the project. The skill instructs the agent to download the
+public archive when the repo is not cloned, run `scripts/setup.mjs`, and verify
+the generated project.
+
 Version options:
 
 - `current`: use this setup kit's pinned `effect` version.
@@ -58,6 +70,16 @@ pnpm run check
 
 `setup:test` refreshes `SETUP-RECEIPT.md` after all setup checks pass.
 
+For setup-kit contributors:
+
+```sh
+pnpm run smoke:test
+```
+
+The smoke test generates a temporary project, verifies `SETUP-RECEIPT.md`, runs
+`pnpm run check` in the generated project, and removes the temporary directory
+unless `KEEP_SMOKE_DIR=1` is set.
+
 ## Generated Project Includes
 
 - `AGENTS.md` and `CLAUDE.md` with agent instructions.
@@ -87,3 +109,7 @@ or archive download, then run `scripts/setup.mjs`.
 This kit applies the local-source principle by cloning `effect-smol` into
 `.repos/effect-smol` as read-only reference source. It uses a setup-time clone,
 not a git subtree.
+
+## License
+
+MIT, matching Effect.

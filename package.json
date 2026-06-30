@@ -9,7 +9,8 @@
     "effect-agent-setup": "./scripts/setup.mjs"
   },
   "scripts": {
-    "setup": "node scripts/setup.mjs --help"
+    "setup": "node scripts/setup.mjs --help",
+    "smoke:test": "node scripts/smoke-test.mjs"
   },
   "dependencies": {
     "effect": "4.0.0-beta.90"

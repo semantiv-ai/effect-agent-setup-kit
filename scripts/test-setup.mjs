@@ -65,6 +65,58 @@ const pass = (message) => {
   console.log(`OK ${message}`)
 }
 
+const writeSetupReceipt = () => {
+  const packageJson = readJson("package.json")
+  const effectSmol = path.join(root, ".repos", "effect-smol")
+  const effectVersion = packageJson.dependencies.effect
+  const effectVitestVersion = packageJson.devDependencies["@effect/vitest"]
+  const effectSmolHead = run("effect-smol receipt HEAD", "git", ["-C", effectSmol, "rev-parse", "--short", "HEAD"]).stdout.trim()
+  const receipt = [
+    "# Setup Receipt",
+    "",
+    `Generated: ${new Date().toISOString()}`,
+    `Project: ${packageJson.name}`,
+    `Effect version: ${effectVersion}`,
+    `@effect/vitest version: ${effectVitestVersion}`,
+    `effect-smol tag: effect@${effectVersion}`,
+    `effect-smol commit: ${effectSmolHead}`,
+    "",
+    "Status: ready for Effect agent coding.",
+    "",
+    "Verified checks:",
+    "",
+    "- static setup contract",
+    "- effect and @effect/vitest version pairing",
+    "- pinned .repos/effect-smol reference clone",
+    "- generated code does not import from .repos",
+    "- TypeScript patched for the Effect language service",
+    "- TypeScript typecheck",
+    "- Effect language-service diagnostics",
+    "- type-aware oxlint",
+    "- Vitest tests",
+    "- negative Effect diagnostic probes",
+    "- negative oxlint probes",
+    "",
+    "Next commands:",
+    "",
+    "```sh",
+    "pnpm run setup:test",
+    "pnpm run check",
+    "```",
+    "",
+    "Agent starting points:",
+    "",
+    "- AGENTS.md",
+    "- patterns/effect-skill-index.md",
+    "- .repos/effect-smol/LLMS.md",
+    "- docs/reference/effect-ai-chat-example/knowledge/skills/",
+    ""
+  ].join("\n")
+
+  fs.writeFileSync(path.join(root, "SETUP-RECEIPT.md"), receipt)
+  pass("setup receipt written to SETUP-RECEIPT.md")
+}
+
 const walkTextFiles = (directory, visit) => {
   if (!fs.existsSync(directory)) {
     return
@@ -355,6 +407,7 @@ try {
   writeProbeProject()
   checkEffectDiagnosticProbes()
   checkOxlintProbes()
+  writeSetupReceipt()
 } finally {
   fs.rmSync(probeDir, { recursive: true, force: true })
 }

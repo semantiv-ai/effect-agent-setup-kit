@@ -27,6 +27,9 @@ pnpm run setup:test
 pnpm run check
 ```
 
+`setup:test` writes `SETUP-RECEIPT.md` after all setup checks pass. Treat that
+file as the local receipt that this project is ready for Effect agent coding.
+
 ## Reference Sources
 
 This generated setup includes or applies ideas from:

@@ -1,0 +1,32 @@
+{
+  "name": "__PROJECT_NAME__",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Small Effect-native project with agent coding guardrails.",
+  "packageManager": "pnpm@10.28.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "setup:test": "node scripts/test-setup.mjs",
+    "prepare": "effect-language-service patch",
+    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false",
+    "effect:diagnostics": "effect-language-service diagnostics --project tsconfig.json --format pretty --strict",
+    "lint": "oxlint -c .oxlintrc.json --tsconfig tsconfig.json --type-aware",
+    "test": "vitest run --passWithNoTests",
+    "check": "pnpm run typecheck && pnpm run effect:diagnostics && pnpm run lint && pnpm run test"
+  },
+  "dependencies": {
+    "effect": "__EFFECT_VERSION__"
+  },
+  "devDependencies": {
+    "@effect/language-service": "0.85.1",
+    "@effect/vitest": "__EFFECT_VERSION__",
+    "@types/node": "^25.7.0",
+    "oxlint": "^1.64.0",
+    "oxlint-tsgolint": "^0.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6"
+  }
+}

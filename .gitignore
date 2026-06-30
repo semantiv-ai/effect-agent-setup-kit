@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.pnpm-store/
+.DS_Store
+
+# Generated during setup-kit validation.
+.tmp-setup-*/

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.setup-probes/
+.pnpm-store/
+
+# Reference clones are local input, not application source.
+.repos/*/.git/

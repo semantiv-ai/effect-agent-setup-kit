@@ -14,6 +14,9 @@ Before writing non-trivial Effect code:
 - read the smallest relevant file under `patterns/`;
 - for module-specific Effect APIs, read the matching copied skill under
   `docs/reference/effect-ai-chat-example/knowledge/skills/`;
+- if no local pattern or copied skill covers an Effect module or integration,
+  inspect `.repos/effect-smol` source/tests and create a focused
+  `patterns/effect-<topic>.md` note before implementing;
 - use namespace imports such as `import * as Effect from "effect/Effect"`;
 - use `Effect.gen` for inline programs;
 - use `Effect.fn("Name")` for reusable functions that return Effects;

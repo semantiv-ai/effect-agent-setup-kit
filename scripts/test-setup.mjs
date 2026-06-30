@@ -89,6 +89,7 @@ const writeSetupReceipt = () => {
     "- effect and @effect/vitest version pairing",
     "- pinned .repos/effect-smol reference clone",
     "- generated code does not import from .repos",
+    "- agent instructions require source-backed patterns for uncovered modules",
     "- TypeScript patched for the Effect language service",
     "- TypeScript typecheck",
     "- Effect language-service diagnostics",
@@ -163,6 +164,10 @@ const checkStaticConfig = () => {
   assert(agents.includes("Effect Agent Setup Instructions"), "AGENTS.md is missing setup agent instructions.")
   assert(claude.includes("Effect Agent Setup Instructions"), "CLAUDE.md is missing Claude Code instructions.")
   assert(claude.includes("mirrors `AGENTS.md`"), "CLAUDE.md does not point back to AGENTS.md.")
+  assert(agents.includes("create a focused"), "AGENTS.md does not require creating a focused pattern for uncovered Effect areas.")
+  assert(agents.includes("patterns/effect-<topic>.md"), "AGENTS.md does not name the local pattern file convention.")
+  assert(claude.includes("create a focused"), "CLAUDE.md does not require creating a focused pattern for uncovered Effect areas.")
+  assert(claude.includes("patterns/effect-<topic>.md"), "CLAUDE.md does not name the local pattern file convention.")
   assert(readme.includes("Reference Sources"), "README.md is missing source acknowledgments.")
   assert(readme.includes("effect-ai-chat-example"), "README.md does not acknowledge the copied Effect AI chat example material.")
   assert(readme.includes("MichaelArnaldi"), "README.md does not acknowledge Michael Arnaldi's source workflow.")

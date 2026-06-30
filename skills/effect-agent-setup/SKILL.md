@@ -70,9 +70,12 @@ standalone verifier.
    non-trivial Effect code.
 4. Update only the local pattern files whose guidance changed for the new
    version.
-5. Keep generated code importing Effect from `node_modules` paths such as
+5. If an Effect module or integration has no local pattern or copied skill,
+   create a focused `patterns/effect-<topic>.md` note from the inspected
+   source/tests before implementing code.
+6. Keep generated code importing Effect from `node_modules` paths such as
    `effect/Effect`; never import application code from `.repos`.
-6. Run:
+7. Run:
 
 ```sh
 pnpm run setup:test
